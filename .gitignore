@@ -1,0 +1,35 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Datos generados (grandes y personales)
+data/replays/
+data/structured/
+data/reports/
+data/state.json
+
+# Logs y temporales
+*.log
+*.tmp
+*.pyc
+.pytest_cache/
+.mypy_cache/
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Configuración local sensible
+config/*.local.json
+.env
+*.key
+
+# Builds y distribución
+dist/
+build/
+*.egg-info/

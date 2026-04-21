@@ -1,0 +1,35 @@
+{
+  "api": {
+    "base_url": "https://replay.pokemonshowdown.com",
+    "search_endpoint": "/search.json",
+    "replay_endpoint": "/{replay_id}.json"
+  },
+  "target_format": "gen9championsvgc2026regma",
+  "pagination": {
+    "page_size": 51,
+    "max_iterations": 20
+  },
+  "concurrency": {
+    "max_workers": 10,
+    "delay_between_requests_sec": 0.5
+  },
+  "retries": {
+    "max_attempts": 3,
+    "base_backoff_sec": 2.0
+  },
+  "http": {
+    "timeout_sec": 10.0
+  },
+  "storage": {
+    "output_dir": "./data/replays"
+  },
+  "state": {
+    "file_path": "./data/state.json"
+  },
+  "parser": {
+    "output_dir": "./data/structured"
+  },
+  "reports": {
+    "output_dir": "./data/reports"
+  }
+}

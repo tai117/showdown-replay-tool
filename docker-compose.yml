@@ -1,0 +1,14 @@
+services:
+  showdown-tool:
+    build: .
+    container_name: showdown-replay-downloader
+    volumes:
+      # Persistencia de datos en el host
+      - ./data:/app/data
+      - ./config:/app/config:ro
+    environment:
+      # Overrides opcionales vía entorno
+      - PYTHONUNBUFFERED=1
+    # Ejecuta fetch por defecto, sobreescribir con comando
+    command: ["fetch", "--format", "${SHOWDOWN_FORMAT:-gen9championsvgc2026regma}", "--pages", "${SHOWDOWN_PAGES:-5}"]
+    restart: "no"
