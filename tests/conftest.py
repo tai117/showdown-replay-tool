@@ -8,7 +8,6 @@ from aioresponses import aioresponses
 @pytest.fixture
 def temp_config(tmp_path: Path) -> Path:
     """Genera un archivo de configuración válido en directorio temporal."""
-    # ✅ FIX: Sintaxis correcta de type hint
     config_data: Dict[str, Any] = {
         "api": {
             "base_url": "https://example.com",
@@ -32,6 +31,7 @@ def temp_config(tmp_path: Path) -> Path:
 
 @pytest.fixture
 def mock_raw_replay() -> Dict[str, Any]:
+    """Replay crudo mínimo válido siguiendo protocolo Showdown."""
     return {
         "id": "test_format-12345",
         "format": "[Gen 9] Test",
@@ -53,6 +53,7 @@ def mock_raw_replay() -> Dict[str, Any]:
 
 @pytest.fixture
 def mock_parsed_replays(tmp_path: Path) -> Path:
+    """Directorio con archivos _parsed.json mock para análisis."""
     structured_dir = tmp_path / "structured"
     structured_dir.mkdir()
     r1 = {
@@ -84,5 +85,6 @@ def mock_parsed_replays(tmp_path: Path) -> Path:
 
 @pytest.fixture
 def mock_aioresponse():
+    """Fixture para mockear requests HTTP asíncronos."""
     with aioresponses() as m:
         yield m

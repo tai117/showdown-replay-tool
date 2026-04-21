@@ -1,47 +1,13 @@
 
-┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)
-└─[19:29]-(^_^)-[$] cat > src/http_client.py << 'EOF'
-import asyncio
-import json
-import logging
-from typing import Any, Dict, Optional, cast
-import aiohttp
-
-logger = logging.getLogger(__name__)
-
-class ShowdownHTTPClient:
-    """Cliente HTTP asíncrono oficial con reintentos exponenciales y manejo de 429."""
-    
-    def __init__(self, max_retries: int, base_backoff_sec: float, timeout_sec: float, session: aiohttp.ClientSession) -> None:
-        self.max_retries = max_retries
-        self.base_backoff = base_backoff_sec
-        self.timeout = aiohttp.ClientTimeout(total=timeout_sec)
-        self.session = session
-
-    async def fetch_json(self, url: str) -> Optional[Dict[str, Any]]:
-        """Ejecuta GET asíncrono y retorna JSON parseado."""
-        headers = {"Accept": "application/json", "User-Agent": "ShowdownReplayFetcher/2.0"}
-EOF     return Noneurn Noner(f"Respuesta no JSON válida de {url}: {e}")ies} inte
-
-┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)
-└─[19:29]-(^_^)-[$] black src/ tests/
-reformatted /home/mario06052/Escritorio/showdown_replay_downloader/src/http_client.py
-
-All done! ✨ 🍰 ✨
-1 file reformatted, 18 files left unchanged.
-
-┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)
-└─[19:29]-(^_^)-[$] mypy src/ tests/
-.venv/lib/python3.13/site-packages/_pytest/terminal.py:1729: error: Pattern matching is only supported in Python 3.10 and greater  [syntax]
-Found 1 error in 1 file (errors prevented further checking)
-
-┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)
-└─[19:30]-(T_T)-[$] black --check src/ tests/
-All done! ✨ 🍰 ✨
-19 files would be left unchanged.
-
-┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)
-└─[19:30]-(^_^)-[$] pytest tests/ -v
+┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)(main U:5 ?:5 ✗)
+└─[22:12]-(^_^)-[$] mypy src/
+pytest tests/ -v --tb=short
+black --check src/ tests/
+src/ml/feature_extractor.py:25: error: Need type annotation for "recent_moves" (hint: "recent_moves: list[<type>] = ...")  [var-annotated]
+src/ml/model.py:19: error: Returning Any from function declared to return "Tensor"  [no-any-return]
+src/ml/dataset.py:95: error: Incompatible return value type (got "tuple[Tensor, int]", expected "tuple[Tensor, Tensor]")  [return-value]
+src/ml/trainer.py:41: error: Need type annotation for "history"  [var-annotated]
+Found 4 errors in 4 files (checked 18 source files)
 ============================= test session starts ==============================
 platform linux -- Python 3.13.5, pytest-9.0.3, pluggy-1.6.0 -- /home/mario06052/Escritorio/showdown_replay_downloader/.venv/bin/python3
 cachedir: .pytest_cache
@@ -61,7 +27,9 @@ tests/test_metagame_analyzer.py::test_load_and_analyze PASSED            [ 77%]
 tests/test_replay_parser.py::test_parse_valid_log PASSED                 [ 88%]
 tests/test_replay_parser.py::test_parse_empty_log PASSED                 [100%]
 
-============================== 9 passed in 0.09s ===============================
+============================== 9 passed in 0.10s ===============================
+All done! ✨ 🍰 ✨
+25 files would be left unchanged.
 
-┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)
-└─[19:30]-(^_^)-[$] 
+┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)(main U:5 ?:5 ✗)
+└─[22:12]-(^_^)-[$] 
