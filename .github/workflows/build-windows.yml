@@ -1,0 +1,42 @@
+name: Build Windows .exe
+
+on:
+  push:
+    branches: [ main, release ]
+  workflow_dispatch: # Permite ejecución manual desde GitHub
+
+jobs:
+  build-exe:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install pyinstaller
+
+    - name: Build executable
+      shell: cmd
+      run: >-
+        pyinstaller --onefile --name showdown-replay-tool
+        --hidden-import src --hidden-import src.cli --hidden-import src.orchestrator
+        --hidden-import src.config_loader --hidden-import src.http_client
+        --hidden-import src.replay_paginator --hidden-import src.replay_storage
+        --hidden-import src.replay_parser --hidden-import src.state_manager
+        --hidden-import src.metagame_analyzer --hidden-import src.visualizer
+        src/cli.py
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: showdown-replay-tool-windows
+        path: dist/showdown-replay-tool.exe
+        retention-days: 30
