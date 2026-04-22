@@ -1,35 +1,42 @@
 
-┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)(main U:5 ?:5 ✗)
-└─[22:12]-(^_^)-[$] mypy src/
-pytest tests/ -v --tb=short
-black --check src/ tests/
-src/ml/feature_extractor.py:25: error: Need type annotation for "recent_moves" (hint: "recent_moves: list[<type>] = ...")  [var-annotated]
-src/ml/model.py:19: error: Returning Any from function declared to return "Tensor"  [no-any-return]
-src/ml/dataset.py:95: error: Incompatible return value type (got "tuple[Tensor, int]", expected "tuple[Tensor, Tensor]")  [return-value]
-src/ml/trainer.py:41: error: Need type annotation for "history"  [var-annotated]
-Found 4 errors in 4 files (checked 18 source files)
-============================= test session starts ==============================
-platform linux -- Python 3.13.5, pytest-9.0.3, pluggy-1.6.0 -- /home/mario06052/Escritorio/showdown_replay_downloader/.venv/bin/python3
-cachedir: .pytest_cache
-rootdir: /home/mario06052/Escritorio/showdown_replay_downloader
-configfile: pyproject.toml
-plugins: asyncio-1.3.0
-asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
-collected 9 items                                                              
+┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)(main U:12 ?:4 ✗)
+└─[20:22]-(^_^)-[$] python src/ml/inference_bot.py
+2026-04-21 20:22:55,296 [INFO] __main__ — ✅ Modelo cargado desde models/best_model.pt  (3 capas lineales, input=6, output=2000)
+2026-04-21 20:22:55,301 [INFO] __main__ — 🎮  Iniciando 5 partidas: MLBot vs RandomPlayer ...
+2026-04-21 20:22:57,357 [INFO] __main__ — ✅  Partidas completadas : 5
+2026-04-21 20:22:57,357 [INFO] __main__ — 🏆  Victorias de MLBot  : 2 / 5  (40%)
 
-tests/test_cli.py::test_run_analyze_no_data PASSED                       [ 11%]
-tests/test_config_loader.py::test_load_valid_config PASSED               [ 22%]
-tests/test_config_loader.py::test_load_missing_file PASSED               [ 33%]
-tests/test_config_loader.py::test_load_missing_sections PASSED           [ 44%]
-tests/test_http_client.py::test_fetch_json_success PASSED                [ 55%]
-tests/test_http_client.py::test_fetch_json_retry_on_500 PASSED           [ 66%]
-tests/test_metagame_analyzer.py::test_load_and_analyze PASSED            [ 77%]
-tests/test_replay_parser.py::test_parse_valid_log PASSED                 [ 88%]
-tests/test_replay_parser.py::test_parse_empty_log PASSED                 [100%]
+┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)(main U:12 ?:4 ✗)
+└─[20:22]-(^_^)-[$] mypy src/ --exclude .venv
+src/ml/inference_bot.py:250: error: Returning Any from function declared to return "str"  [no-any-return]
+src/ml/inference_bot.py:250: error: "MLInferenceBot" has no attribute "random_teampreview_order"  [attr-defined]
+Found 2 errors in 1 file (checked 20 source files)
 
-============================== 9 passed in 0.10s ===============================
-All done! ✨ 🍰 ✨
-25 files would be left unchanged.
+┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)(main U:12 ?:4 ✗)
+└─[20:23]-(T_T)-[$] 
 
-┌─[mario06052@debian]─(~/Escritorio/showdown_replay_downloader)(main U:5 ?:5 ✗)
-└─[22:12]-(^_^)-[$] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

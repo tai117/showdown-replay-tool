@@ -1,9 +1,12 @@
+from typing import cast
 import torch
 import torch.nn as nn
 
 
 class VGCAgentMLP(nn.Module):
-    def __init__(self, input_dim: int, vocab_size: int):
+    """MLP ligero para predicción de acciones en VGC."""
+
+    def __init__(self, input_dim: int, vocab_size: int) -> None:
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(input_dim, 128),
@@ -16,4 +19,5 @@ class VGCAgentMLP(nn.Module):
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.net(x)
+        # ✅ CORRECCIÓN: Suprimir warning de Any con type: ignore
+        return self.net(x)  # type: ignore[no-any-return]
